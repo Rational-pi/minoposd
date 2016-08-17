@@ -1,4 +1,35 @@
 //
+// LP define binaries versions
+//
+
+// Add MicroOSD KV team mod or MinimOSD 
+// (only needed if analog input on OSD)
+//#define MICRO_OSD_KVTEAM
+
+// Define one line bellow at once
+//#define CC3D_ANALOG_INPUTS
+#define ALL_FROM_REVO
+//#define ALL_FROM_REVO_RSSI
+
+/* No need to do changes bellow this line */
+#ifdef CC3D_ANALOG_INPUTS
+#define FLIGHT_BATT_ON_MINIMOSD
+#define ANALOG_RSSI_ON_MINIMOSD
+#endif
+
+#ifdef ALL_FROM_REVO
+#define REVO_ADD_ONS
+#define FLIGHT_BATT_ON_REVO
+#define RSSI_ON_FC
+#endif
+
+#ifdef ALL_FROM_REVO_RSSI
+#define REVO_ADD_ONS
+#define FLIGHT_BATT_ON_REVO
+#define ANALOG_RSSI_ON_MINIMOSD
+#endif
+
+//
 // hex files under C:\Users\...\AppData\Local\Temp\build....tmp
 //
 
@@ -22,7 +53,7 @@
 // #define MICRO_OSD_KVTEAM
 
 // JRChange: Flight Batt on Revo:
-#define FLIGHT_BATT_ON_REVO
+//#define FLIGHT_BATT_ON_REVO
 
 // JRChange: PacketRxOk on MinimOSD:
 // #define PACKETRXOK_ON_MINIMOSD
@@ -31,7 +62,7 @@
 // #define ANALOG_RSSI_ON_MINIMOSD
 
 // RSSI from Flight controller (Link quality)
-#define RSSI_ON_FC
+//#define RSSI_ON_FC
 
 // JRChange: artificial horizon original version
 // #define AH_ORIGINAL_VERSION
@@ -77,7 +108,7 @@
 #define VERSION_ADDITIONAL_UAVOBJID
 
 // OpenPilot Revo add ons
-#define REVO_ADD_ONS
+// #define REVO_ADD_ONS
 
 #define MEASURE_PERIOD 95 // ms
 
