@@ -477,6 +477,7 @@ int uavtalk_read(void)
             case FLIGHTSTATUS_OBJID_006:
             case FLIGHTSTATUS_OBJID_007:
             case FLIGHTSTATUS_OBJID_008:
+            case FLIGHTSTATUS_OBJID_009:
 #endif
                 osd_armed = uavtalk_get_int8(&msg, FLIGHTSTATUS_OBJ_ARMED);
                 osd_mode  = uavtalk_get_int8(&msg, FLIGHTSTATUS_OBJ_FLIGHTMODE);
@@ -569,6 +570,7 @@ int uavtalk_read(void)
 #ifdef VERSION_ADDITIONAL_UAVOBJID
             case OPLINKSTATUS_OBJID_001:
             case OPLINKSTATUS_OBJID_002:
+            case OPLINKSTATUS_OBJID_003:
 #endif
                 oplm_rssi = uavtalk_get_int8(&msg, OPLINKSTATUS_OBJ_RSSI);
                 oplm_linkquality = uavtalk_get_int8(&msg, OPLINKSTATUS_OBJ_LINKQUALITY);

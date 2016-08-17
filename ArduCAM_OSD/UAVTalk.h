@@ -167,6 +167,7 @@
 #define FLIGHTSTATUS_OBJID_006         0x14ECA392      // different ID for git commit "OP-1760 autotakeoff"
 #define FLIGHTSTATUS_OBJID_007         0xE33E5D4E      // VERSION_RELEASE_15_05 and VERSION_RELEASE_LP15_09
 #define FLIGHTSTATUS_OBJID_008         0x6E3BDB60      // different ID for VERSION_RELEASE_LP16_04 (ASWA status added)
+#define FLIGHTSTATUS_OBJID_009         0x24D25E28      // LP autotune add 20160618
 
 #define SYSTEMALARMS_OBJID_001         0x09C7CBFE      // different ID for unreleased next version
 #define SYSTEMALARMS_OBJID_002         0x1D70DB44      // different ID for unreleased next version and VERSION_RELEASE_13_06_1
@@ -229,6 +230,7 @@
 #define OPLINKSTATUS_OBJID                   0x669C55E2
 #define OPLINKSTATUS_OBJID_001               0xBE2584BA      // different ID for VERSION_RELEASE_14_01_1 and VERSION_RELEASE_14_06_1 and VERSION_RELEASE_14_10_1 and VERSION_RELEASE_15_01_1
 #define OPLINKSTATUS_OBJID_002               0xB1A94E20      // different ID for VERSION_RELEASE_15_02_1
+#define OPLINKSTATUS_OBJID_003               0xDED43774      // different ID for LP next - LP-268
 
 #define OPLINKSTATUS_OBJ_RSSI                96
 #define OPLINKSTATUS_OBJ_LINKQUALITY         97
