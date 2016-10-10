@@ -61,6 +61,7 @@ static float revo_baro_temp         = 0;       // Revo baro temperature
 static int8_t oplm_rssi = 0;                   // OPLM RSSI
 static uint8_t oplm_linkquality     = 0;       // OPLM LinkQuality
 static uint8_t osd_mag_status       = 0;       // MAG status 0=not found, 1=OK, 2=Warning, 3=Critical, 4=Error
+static uint8_t osd_bat_status       = 0;       // Battery status 0=not found, 1=OK, 2=Warning, 3=Critical, 4=Error
 #endif
 static uint8_t osd_receiver_quality = 0;       // Receiver Link Quality
 static float osd_txpid_cur[3]       = {};      // Current TXPID setting

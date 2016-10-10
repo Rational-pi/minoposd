@@ -409,15 +409,38 @@ void panWarn(int first_col, int first_line)
                     }
                     break;
                 case 4: // BATT LOW
-#if defined FLIGHT_BATT_ON_MINIMOSD || defined FLIGHT_BATT_ON_REVO
-                    if (osd_vbat_A < battv / 10.0) {
+#if defined FLIGHT_BATT_ON_MINIMOSD
+                    if (osd_vbat_A < float(battv) / 10.0) {
+#elif defined FLIGHT_BATT_ON_REVO
+                    if ((osd_bat_status > 1) || (osd_vbat_A < float(battv) / 10.0)) {
+                        warning_type   = cycle;
+                        warning_string = "  batt low  ";
+                        // Extended battery status based on Revo alarms
+                        switch (osd_bat_status) {
+                           case 2:
+                               warning_type   = cycle; 
+                               warning_string = "batt warning";
+                               break;
+                           case 3:
+                               warning_type   = cycle;
+                               warning_string = "battcritical";
+                           break;
+                           case 4:
+                               warning_type   = cycle;
+                               warning_string = " batt error ";
+                           break;
+                        }
+                    }
+                    break;
 #else
                     if (osd_vbat_A < float(battv) / 10.0 || osd_battery_remaining_A < batt_warn_level) {
 #endif
+#ifndef FLIGHT_BATT_ON_REVO
                         warning_type   = cycle;
                         warning_string = "  batt low  ";
                     }
                     break;
+#endif
                 case 5: // RSSI LOW
                     if (rssi < rssi_warn_level && rssi != -99 && !rssiraw_on) {
                         warning_type   = cycle;

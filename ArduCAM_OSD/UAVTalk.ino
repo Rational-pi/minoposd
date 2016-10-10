@@ -604,6 +604,7 @@ int uavtalk_read(void)
                 // }
 
                 osd_mag_status = uavtalk_get_int8(&msg, SYSTEMALARMS_ALARM_MAGNETOMETER);
+                osd_bat_status = uavtalk_get_int8(&msg, SYSTEMALARMS_ALARM_BATTERY);
                 break;
 #endif
 
