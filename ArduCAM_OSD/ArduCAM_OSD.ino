@@ -303,6 +303,13 @@ void OnMavlinkTimer() // duration is up to approx. 10ms depending on choosen dis
 #ifdef FLIGHT_BATT_ON_MINIMOSD
     flight_batt_read();
 #endif
+#if defined FLIGHT_BATT_ON_MINIMOSD || defined FLIGHT_BATT_ON_REVO
+    if (osd_ncells_A && osd_vbat_A) {
+        float vbat_percent = (100 * (osd_vbat_A - BATT_VCELL_EMPTY * osd_ncells_A)) /
+            ((BATT_VCELL_FULL - BATT_VCELL_EMPTY) * osd_ncells_A);
+        osd_battery_remaining_A = constrain((int)vbat_percent, 0, 100);
+    }
+#endif
 
 #ifdef PACKETRXOK_ON_MINIMOSD
     PacketRxOk_read();

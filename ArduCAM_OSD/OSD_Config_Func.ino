@@ -179,7 +179,7 @@ void writeSettings()
 // writeEEPROM(on, panSetup_en_ADDR);
         writeEEPROM(30, overspeed_ADDR);
         writeEEPROM(0, stall_ADDR);
-        writeEEPROM(100, battv_ADDR); // 10Volts
+        writeEEPROM(100, numcells_ADDR);
         writeEEPROM(6, ch_toggle_ADDR);
     }
 }
@@ -188,9 +188,10 @@ void writeSettings()
 
 void readSettings()
 {
+    show_battp  = EEPROM.read(show_battp_ADDR);
     overspeed   = EEPROM.read(overspeed_ADDR);
     stall       = EEPROM.read(stall_ADDR);
-    battv       = EEPROM.read(battv_ADDR);
+    osd_ncells_A= EEPROM.read(numcells_ADDR);
 
     switch_mode = EEPROM.read(switch_mode_ADDR);
 // pal_ntsc = EEPROM.read(pal_ntsc_ADDR);

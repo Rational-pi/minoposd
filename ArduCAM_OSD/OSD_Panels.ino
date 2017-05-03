@@ -409,16 +409,14 @@ void panWarn(int first_col, int first_line)
                     }
                     break;
                 case 4: // BATT LOW
-#if defined FLIGHT_BATT_ON_MINIMOSD
-                    if (osd_vbat_A < float(battv) / 10.0) {
-#elif defined FLIGHT_BATT_ON_REVO
-                    if ((osd_bat_status > 1) || (osd_vbat_A < float(battv) / 10.0)) {
+#if defined FLIGHT_BATT_ON_REVO
+                    if ((osd_bat_status > 1) || (osd_vbat_A < float(osd_ncells_A) * BATT_VCELL_EMPTY)) {
                         warning_type   = cycle;
                         warning_string = "  batt low  ";
                         // Extended battery status based on Revo alarms
                         switch (osd_bat_status) {
                            case 2:
-                               warning_type   = cycle; 
+                               warning_type   = cycle;
                                warning_string = "batt warning";
                                break;
                            case 3:
@@ -433,7 +431,7 @@ void panWarn(int first_col, int first_line)
                     }
                     break;
 #else
-                    if (osd_vbat_A < float(battv) / 10.0 || osd_battery_remaining_A < batt_warn_level) {
+                    if (osd_vbat_A < float(osd_ncells_A) * BATT_VCELL_EMPTY || osd_battery_remaining_A < batt_warn_level) {
 #endif
 #ifndef FLIGHT_BATT_ON_REVO
                         warning_type   = cycle;
@@ -453,15 +451,15 @@ void panWarn(int first_col, int first_line)
                 case 6: // Mag status, only while disarmed and used (preflight check)
                     if (osd_armed < 2 && osd_mag_status > 1) {
                          switch (osd_mag_status) {
-                            case 2: 
+                            case 2:
                                 warning_type   = cycle;
                                 warning_string = "mag warning";
                                 break;
-                            case 3: 
+                            case 3:
                                 warning_type   = cycle;
                                 warning_string = "mag critical";
                             break;
-                            case 4: 
+                            case 4:
                                 warning_type   = cycle;
                                 warning_string = " mag  error ";
                             break;
@@ -571,8 +569,8 @@ void panSetup()
             break;
         case 3:
             osd.printf_P(PSTR("battery warning "));
-            osd.printf("%3.1f%c", float(battv) / 10.0, 0x76, 0x20);
-            battv = change_val(battv, battv_ADDR);
+            osd.printf("%3.0i%c", batt_warn_level, 0x25);
+            batt_warn_level = change_val(batt_warn_level, OSD_BATT_WARN_ADDR);
             break;
 #ifdef FLIGHT_BATT_ON_MINIMOSD
         case 6:
@@ -875,7 +873,7 @@ void panRSSI(int first_col, int first_line)
     osd.openPanel();
     osd.printf("%c%3i%c", 0xE1, rssi, 0x25);
     osd.closePanel();
-/* Disable OPLM stats, Rssi already display Link quality in % 
+/* Disable OPLM stats, Rssi already display Link quality in %
 #ifdef REVO_ADD_ONS
     osd.setPanel(first_col, first_line + 1);
     osd.openPanel();
@@ -1125,7 +1123,13 @@ void panBatteryPercent(int first_col, int first_line)
     osd.setPanel(first_col, first_line);
     osd.openPanel();
 #if defined FLIGHT_BATT_ON_MINIMOSD || defined FLIGHT_BATT_ON_REVO
-    osd.printf("%c%5i%c", 0xB9, osd_total_A, 0x82);
+    if (show_battp) {
+        /* Battery voltage as percent */
+        osd.printf("%c%3.0i%c", 0xB5, osd_battery_remaining_A, 0x25);
+    } else {
+        /* Battery mAh consumed */
+        osd.printf("%c%5i%c", 0xB9, osd_total_A, 0x82);
+    }
 #else
     osd.printf("%c%3.0i%c", 0xB9, osd_battery_remaining_A, 0x25);
 #endif

@@ -17,7 +17,8 @@ static boolean switch_mode       = false;
 static uint8_t overspeed         = 0;
 static uint8_t stall             = 0;
 
-static uint8_t battv             = 0;          // Battery warning voltage - units Volt *10
+static uint8_t show_battp        = 0;          // Show battery percentage instead of mAh consumed
+static uint8_t osd_ncells_A     = 0;           // Number of battery cells
 static float osd_vbat_A          = 0;          // Battery A voltage in milivolt
 static int16_t osd_curr_A        = 0;          // Battery A current
 static int8_t osd_battery_remaining_A = 0;     // 0 to 100 <=> 0 to 1000

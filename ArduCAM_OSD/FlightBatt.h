@@ -33,8 +33,8 @@
 
 #if defined MICRO_OSD_KVTEAM
 
-#define VOLTAGE_PIN       0                       // Micro OSD KV team : Bat1
-//#define VOLTAGE_PIN       2                       // Micro OSD KV team : Bat2
+#define VOLTAGE_PIN       2                       // Micro OSD KV team : Bat1
+//#define VOLTAGE_PIN       0                       // Micro OSD KV team : Bat2
 #define CURRENT_PIN       1
 
 #else

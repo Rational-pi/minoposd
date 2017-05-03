@@ -2,13 +2,13 @@
 // LP define binaries versions
 //
 
-// Add MicroOSD KV team mod or MinimOSD 
+// Add MicroOSD KV team mod or MinimOSD
 // (only needed if analog input on OSD)
 //#define MICRO_OSD_KVTEAM
 
 // Define one line bellow at once
-//#define CC3D_ANALOG_INPUTS
-#define ALL_FROM_REVO
+#define CC3D_ANALOG_INPUTS
+//#define ALL_FROM_REVO
 //#define ALL_FROM_REVO_RSSI
 
 /* No need to do changes bellow this line */
@@ -50,10 +50,14 @@
 // #define FLIGHT_BATT_ON_MINIMOSD
 
 // Add MicroOSD KV team mod
-// #define MICRO_OSD_KVTEAM
+#define MICRO_OSD_KVTEAM
 
 // JRChange: Flight Batt on Revo:
 //#define FLIGHT_BATT_ON_REVO
+
+// Voltage per battery cell when full & empty
+#define BATT_VCELL_FULL     4.2
+#define BATT_VCELL_EMPTY    3.0
 
 // JRChange: PacketRxOk on MinimOSD:
 // #define PACKETRXOK_ON_MINIMOSD
@@ -292,10 +296,11 @@
 #define panDistance_x_ADDR        226
 #define panDistance_y_ADDR        228
 
+#define show_battp_ADDR           888
 #define measure_ADDR              890
 #define overspeed_ADDR            892
 #define stall_ADDR                894
-#define battv_ADDR                896
+#define numcells_ADDR             896
 #define battp_ADDR                898
 #define OSD_RSSI_HIGH_ADDR        900
 #define OSD_RSSI_LOW_ADDR         902

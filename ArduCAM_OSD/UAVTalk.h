@@ -151,7 +151,6 @@
 #define SYSTEMALARMS_ALARM_EVENTSYSTEM      5
 #define SYSTEMALARMS_ALARM_MANUALCONTROL    8
 #define SYSTEMALARMS_ALARM_MAGNETOMETER     12
-#define SYSTEMALARMS_ALARM_BATTERY          17
 
 #endif // defined VERSION_RELEASE_12_10_1 || defined VERSION_RELEASE_12_10_2 || defined VERSION_RELEASE_13_06_1 || defined VERSION_RELEASE_13_06_2 || defined VERSION_RELEASE_14_01_1
 
@@ -220,13 +219,13 @@
 
 #define POSITIONSTATE_OBJ_NORTH              0
 #define POSITIONSTATE_OBJ_EAST               4
-#define POSITIONSTATE_OBJ_DOWN               8               
+#define POSITIONSTATE_OBJ_DOWN               8
 
 #define VELOCITYSTATE_OBJID                  0xC243686C      // VERSION_RELEASE_LP15_09
 
 #define VELOCITYSTATE_OBJ_NORTH              0
 #define VELOCITYSTATE_OBJ_EAST               4
-#define VELOCITYSTATE_OBJ_DOWN               8   
+#define VELOCITYSTATE_OBJ_DOWN               8
 
 #define OPLINKSTATUS_OBJID                   0x669C55E2
 #define OPLINKSTATUS_OBJID_001               0xBE2584BA      // different ID for VERSION_RELEASE_14_01_1 and VERSION_RELEASE_14_06_1 and VERSION_RELEASE_14_10_1 and VERSION_RELEASE_15_01_1
