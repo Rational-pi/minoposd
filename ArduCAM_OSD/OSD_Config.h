@@ -68,6 +68,10 @@
 // RSSI from Flight controller (Link quality)
 //#define RSSI_ON_FC
 
+// Support analog signal from A7105 chipset
+// found in HK-TR6A-V2 and FS-R6B receivers
+#define A7105_ANALOG_RSSI
+
 // JRChange: artificial horizon original version
 // #define AH_ORIGINAL_VERSION
 

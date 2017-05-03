@@ -33,7 +33,8 @@
 
 void flight_batt_init(void)
 {
-    analogReference(INTERNAL); // INTERNAL: a built-in reference, equal to 1.1 volts on the ATmega168 or ATmega328
+    analog.reference(VOLTAGE_PIN, INTERNAL); // INTERNAL: a built-in reference, equal to 1.1 volts on the ATmega168 or ATmega328
+    analog.reference(CURRENT_PIN, INTERNAL);
 }
 
 
@@ -49,10 +50,10 @@ void flight_batt_read(void)
         delta_ms   = millis() - loopTimer;
         loopTimer  = millis();
 
-        voltage    = CURRENT_VOLTAGE(analogRead(VOLTAGE_PIN)) * .2 + voltage * .8;         // reads battery voltage pin
+        voltage    = CURRENT_VOLTAGE(analog.read(VOLTAGE_PIN)) * .2 + voltage * .8;         // reads battery voltage pin
         osd_vbat_A = voltage;
         if (curr_amp_per_volt > 0) { // Consider Amp sensor disbled when Amp per Volt ratio is zero
-            current_amps   = CURRENT_AMPS(analogRead(CURRENT_PIN)) * .2 + current_amps * .8;       // reads battery sensor current pin
+            current_amps   = CURRENT_AMPS(analog.read(CURRENT_PIN)) * .2 + current_amps * .8;       // reads battery sensor current pin
             current_total += current_amps * (float)delta_ms * 0.0002778; // .0002778 is 1/3600 (conversion to hours)
             osd_curr_A     = current_amps * 100;
             osd_total_A    = current_total;

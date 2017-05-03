@@ -54,6 +54,7 @@
 
 
 // AVR Includes
+#include <FastADC.h>
 #include <FastSerial.h>
 #include <AP_Common.h>
 #include <AP_Math.h>
@@ -112,7 +113,7 @@
 // Objects and Serial definitions
 FastSerialPort0(Serial);
 OSD osd; // OSD object
-
+FastADC(analog, 3, false);
 SimpleTimer mavlinkTimer;
 
 
@@ -121,6 +122,7 @@ SimpleTimer mavlinkTimer;
 
 void setup()
 {
+    analog.init();
 #ifdef ArduCAM328
     pinMode(10, OUTPUT); // USB ArduCam Only
 #endif
