@@ -488,7 +488,7 @@ namespace OSD
                 OVERSPEED_label.Text = "Overspeed (mph)";
             }
 
-            MINVOLT_numeric.Value = Convert.ToDecimal(pan.battv) / Convert.ToDecimal(10.0);
+            NUMCELL_numeric.Value = pan.numcells;
 
             if (pan.ch_toggle >= toggle_offset && pan.ch_toggle < 9) ONOFF_combo.SelectedIndex = pan.ch_toggle - toggle_offset;
             else ONOFF_combo.SelectedIndex = 0; //reject garbage from the red file
@@ -1223,7 +1223,7 @@ namespace OSD
                 eeprom[measure_ADDR] = pan.converts;
                 eeprom[overspeed_ADDR] = pan.overspeed;
                 eeprom[stall_ADDR] = pan.stall;
-                eeprom[battv_ADDR] = pan.battv;
+                eeprom[numcells_ADDR] = pan.numcells;
 
                 eeprom[OSD_RSSI_HIGH_ADDR] = pan.rssical;
                 eeprom[OSD_RSSI_LOW_ADDR] = pan.rssipersent;
@@ -1407,7 +1407,7 @@ namespace OSD
             eeprom[measure_ADDR] = pan.converts;
             eeprom[overspeed_ADDR] = pan.overspeed;
             eeprom[stall_ADDR] = pan.stall;
-            eeprom[battv_ADDR] = pan.battv;
+            eeprom[numcells_ADDR] = pan.numcells;
 
             eeprom[OSD_RSSI_HIGH_ADDR] = pan.rssical;
             eeprom[OSD_RSSI_LOW_ADDR] = pan.rssipersent;
@@ -1630,7 +1630,7 @@ namespace OSD
         const int measure_ADDR = 890;
         const int overspeed_ADDR = 892;
         const int stall_ADDR = 894;
-        const int battv_ADDR = 896;
+        const int numcells_ADDR = 896;
         //const int battp_ADDR = 898;
         const int OSD_RSSI_HIGH_ADDR = 900;
         const int OSD_RSSI_LOW_ADDR = 902;
@@ -1945,8 +1945,8 @@ namespace OSD
             pan.stall = eeprom[stall_ADDR];
             STALL_numeric.Value = pan.stall;
 
-            pan.battv = eeprom[battv_ADDR];
-            MINVOLT_numeric.Value = Convert.ToDecimal(pan.battv) / Convert.ToDecimal(10.0);
+            pan.numcells = eeprom[numcells_ADDR];
+            NUMCELL_numeric.Value = Math.Min(pan.numcells, (SByte)5);
 
             pan.rssical = eeprom[OSD_RSSI_HIGH_ADDR];
             //RSSI_numeric_max.Value = pan.rssical;
@@ -2180,7 +2180,7 @@ namespace OSD
                         sw.WriteLine("{0}\t{1}", "Units", pan.converts);
                         sw.WriteLine("{0}\t{1}", "Overspeed", pan.overspeed);
                         sw.WriteLine("{0}\t{1}", "Stall", pan.stall);
-                        sw.WriteLine("{0}\t{1}", "Battery", pan.battv);
+                        sw.WriteLine("{0}\t{1}", "Battery Cells", pan.numcells);
                         sw.WriteLine("{0}\t{1}", "RSSI High", pan.rssical);
                         sw.WriteLine("{0}\t{1}", "RSSI Low", pan.rssipersent);
                         sw.WriteLine("{0}\t{1}", "RSSI Enable Raw", pan.rssiraw_on);
@@ -2274,7 +2274,7 @@ namespace OSD
                             if (strings[0] == "Units") pan.converts = byte.Parse(strings[1]);
                             else if (strings[0] == "Overspeed") pan.overspeed = byte.Parse(strings[1]);
                             else if (strings[0] == "Stall") pan.stall = byte.Parse(strings[1]);
-                            else if (strings[0] == "Battery") pan.battv = byte.Parse(strings[1]);
+                            else if (strings[0] == "Battery Cells") pan.numcells = byte.Parse(strings[1]);
                             else if (strings[0] == "RSSI High") pan.rssical = byte.Parse(strings[1]);
                             else if (strings[0] == "RSSI Low") pan.rssipersent = byte.Parse(strings[1]);
                             else if (strings[0] == "RSSI Enable Raw") pan.rssiraw_on = byte.Parse(strings[1]);
@@ -2316,7 +2316,7 @@ namespace OSD
 
                         OVERSPEED_numeric.Value = pan.overspeed;
                         STALL_numeric.Value = pan.stall;
-                        MINVOLT_numeric.Value = Convert.ToDecimal(pan.battv) / Convert.ToDecimal(10.0);
+                        NUMCELL_numeric.Value = pan.numcells;
 
                         //RSSI_numeric_max.Value = pan.rssical;
                         //RSSI_numeric_min.Value = pan.rssipersent;
@@ -3117,9 +3117,9 @@ namespace OSD
             osdDraw2();
         }
 
-        private void MINVOLT_numeric_ValueChanged(object sender, EventArgs e)
+        private void NUMCELL_numeric_ValueChanged(object sender, EventArgs e)
         {
-            pan.battv = (byte)(MINVOLT_numeric.Value * 10);
+            pan.numcells = (byte)NUMCELL_numeric.Value;
         }
 
         private void ONOFF_combo_SelectedIndexChanged(object sender, EventArgs e)

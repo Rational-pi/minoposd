@@ -43,6 +43,8 @@ namespace OSD
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.loadDefaultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -96,7 +98,7 @@ namespace OSD
             this.label9 = new System.Windows.Forms.Label();
             this.BATT_WARNnumeric = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.MINVOLT_numeric = new System.Windows.Forms.NumericUpDown();
+            this.NUMCELL_numeric = new System.Windows.Forms.NumericUpDown();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.STALL_label = new System.Windows.Forms.Label();
             this.STALL_numeric = new System.Windows.Forms.NumericUpDown();
@@ -114,6 +116,7 @@ namespace OSD
             this.LIST_items = new System.Windows.Forms.TreeView();
             this.rbtSortCategory = new System.Windows.Forms.RadioButton();
             this.rbtSortAlphabetic = new System.Windows.Forms.RadioButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.LIST_items2 = new System.Windows.Forms.TreeView();
             this.rbtSortCategory2 = new System.Windows.Forms.RadioButton();
@@ -123,6 +126,10 @@ namespace OSD
             this.label4 = new System.Windows.Forms.Label();
             this.NUM_Y2 = new System.Windows.Forms.NumericUpDown();
             this.NUM_X2 = new System.Windows.Forms.NumericUpDown();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.cbxShowUpdateDialog = new System.Windows.Forms.CheckBox();
+            this.cbxAutoUpdate = new System.Windows.Forms.CheckBox();
             this.lblFWModelType = new System.Windows.Forms.Label();
             this.lblModelType = new System.Windows.Forms.Label();
             this.cbxModelType = new System.Windows.Forms.ComboBox();
@@ -132,13 +139,6 @@ namespace OSD
             this.lblLatestCharsetUploaded = new System.Windows.Forms.Label();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.cbxAutoUpdate = new System.Windows.Forms.CheckBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.saveToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cbxShowUpdateDialog = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_Y)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_X)).BeginInit();
@@ -155,7 +155,7 @@ namespace OSD
             ((System.ComponentModel.ISupportInitialize)(this.OVERSPEED_numeric)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BATT_WARNnumeric)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MINVOLT_numeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUMCELL_numeric)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.STALL_numeric)).BeginInit();
             this.groupBoxRSSI.SuspendLayout();
@@ -163,15 +163,15 @@ namespace OSD
             ((System.ComponentModel.ISupportInitialize)(this.RSSI_numeric_max)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RSSI_numeric_min)).BeginInit();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_Y2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_X2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.tabPage3.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox12.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -306,31 +306,49 @@ namespace OSD
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // saveToFileToolStripMenuItem
+            // 
+            this.saveToFileToolStripMenuItem.Image = global::OSD.Properties.Resources.saveHS;
+            this.saveToFileToolStripMenuItem.Name = "saveToFileToolStripMenuItem";
+            this.saveToFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToFileToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.saveToFileToolStripMenuItem.Text = "Save OSD file...";
+            this.saveToFileToolStripMenuItem.Click += new System.EventHandler(this.saveToFileToolStripMenuItem_Click);
+            // 
+            // loadFromFileToolStripMenuItem
+            // 
+            this.loadFromFileToolStripMenuItem.Image = global::OSD.Properties.Resources.openHS;
+            this.loadFromFileToolStripMenuItem.Name = "loadFromFileToolStripMenuItem";
+            this.loadFromFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.loadFromFileToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.loadFromFileToolStripMenuItem.Text = "Open OSD File...";
+            this.loadFromFileToolStripMenuItem.Click += new System.EventHandler(this.loadFromFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(203, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(199, 6);
             // 
             // loadDefaultsToolStripMenuItem
             // 
             this.loadDefaultsToolStripMenuItem.Name = "loadDefaultsToolStripMenuItem";
-            this.loadDefaultsToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.loadDefaultsToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.loadDefaultsToolStripMenuItem.Text = "Load Defaults";
             this.loadDefaultsToolStripMenuItem.Click += new System.EventHandler(this.loadDefaultsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(203, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(199, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -340,14 +358,14 @@ namespace OSD
             this.CHK_ntsc,
             this.CHK_pal});
             this.videoModeToolStripMenuItem.Name = "videoModeToolStripMenuItem";
-            this.videoModeToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.videoModeToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
             this.videoModeToolStripMenuItem.Text = "Video Mode";
             // 
             // CHK_ntsc
             // 
             this.CHK_ntsc.CheckOnClick = true;
             this.CHK_ntsc.Name = "CHK_ntsc";
-            this.CHK_ntsc.Size = new System.Drawing.Size(111, 22);
+            this.CHK_ntsc.Size = new System.Drawing.Size(104, 22);
             this.CHK_ntsc.Text = "NTSC";
             this.CHK_ntsc.CheckStateChanged += new System.EventHandler(this.nTSCToolStripMenuItem_CheckStateChanged);
             this.CHK_ntsc.Click += new System.EventHandler(this.CHK_ntsc_Click);
@@ -358,7 +376,7 @@ namespace OSD
             this.CHK_pal.CheckOnClick = true;
             this.CHK_pal.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CHK_pal.Name = "CHK_pal";
-            this.CHK_pal.Size = new System.Drawing.Size(111, 22);
+            this.CHK_pal.Size = new System.Drawing.Size(104, 22);
             this.CHK_pal.Text = "PAL";
             this.CHK_pal.CheckedChanged += new System.EventHandler(this.CHK_pal_CheckedChanged);
             this.CHK_pal.CheckStateChanged += new System.EventHandler(this.pALToolStripMenuItem_CheckStateChanged);
@@ -380,7 +398,7 @@ namespace OSD
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
             this.optionsToolStripMenuItem.ShowShortcutKeys = false;
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
             // 
             // checkBox1
@@ -389,14 +407,14 @@ namespace OSD
             this.checkBox1.CheckOnClick = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(233, 22);
+            this.checkBox1.Size = new System.Drawing.Size(231, 22);
             this.checkBox1.Text = "Show Grid";
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // updateFirmwareToolStripMenuItem
             // 
             this.updateFirmwareToolStripMenuItem.Name = "updateFirmwareToolStripMenuItem";
-            this.updateFirmwareToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.updateFirmwareToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.updateFirmwareToolStripMenuItem.Text = "Update Firmware...";
             this.updateFirmwareToolStripMenuItem.ToolTipText = "Re-Flash the OSD with a new firmware image";
             this.updateFirmwareToolStripMenuItem.Click += new System.EventHandler(this.updateFirmwareToolStripMenuItem_Click);
@@ -404,14 +422,14 @@ namespace OSD
             // customBGPictureToolStripMenuItem
             // 
             this.customBGPictureToolStripMenuItem.Name = "customBGPictureToolStripMenuItem";
-            this.customBGPictureToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.customBGPictureToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.customBGPictureToolStripMenuItem.Text = "Background Image...";
             this.customBGPictureToolStripMenuItem.Click += new System.EventHandler(this.customBGPictureToolStripMenuItem_Click);
             // 
             // sendTLogToolStripMenuItem
             // 
             this.sendTLogToolStripMenuItem.Name = "sendTLogToolStripMenuItem";
-            this.sendTLogToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.sendTLogToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.sendTLogToolStripMenuItem.Text = "Send TLog...";
             this.sendTLogToolStripMenuItem.ToolTipText = "Send a Mavlink transmission log to the OSD to test the layout";
             this.sendTLogToolStripMenuItem.Click += new System.EventHandler(this.sendTLogToolStripMenuItem_Click);
@@ -419,7 +437,7 @@ namespace OSD
             // updateFontToolStripMenuItem
             // 
             this.updateFontToolStripMenuItem.Name = "updateFontToolStripMenuItem";
-            this.updateFontToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.updateFontToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.updateFontToolStripMenuItem.Text = "Update CharSet...";
             this.updateFontToolStripMenuItem.ToolTipText = "Update the font file on the OSD";
             this.updateFontToolStripMenuItem.Click += new System.EventHandler(this.updateFontToolStripMenuItem_Click);
@@ -427,7 +445,7 @@ namespace OSD
             // updateCharsetDevToolStripMenuItem
             // 
             this.updateCharsetDevToolStripMenuItem.Name = "updateCharsetDevToolStripMenuItem";
-            this.updateCharsetDevToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.updateCharsetDevToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.updateCharsetDevToolStripMenuItem.Text = "Update Charset (Dev)...";
             this.updateCharsetDevToolStripMenuItem.Visible = false;
             this.updateCharsetDevToolStripMenuItem.Click += new System.EventHandler(this.updateCharsetDevToolStripMenuItem_Click);
@@ -435,7 +453,7 @@ namespace OSD
             // updateCharsetcustomFwToolStripMenuItem
             // 
             this.updateCharsetcustomFwToolStripMenuItem.Name = "updateCharsetcustomFwToolStripMenuItem";
-            this.updateCharsetcustomFwToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.updateCharsetcustomFwToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.updateCharsetcustomFwToolStripMenuItem.Text = "Update Charset (custom fw)...";
             this.updateCharsetcustomFwToolStripMenuItem.Visible = false;
             this.updateCharsetcustomFwToolStripMenuItem.Click += new System.EventHandler(this.updateCharsetcustomFwToolStripMenuItem_Click);
@@ -443,14 +461,14 @@ namespace OSD
             // presentCustomCharsetToolStripMenuItem
             // 
             this.presentCustomCharsetToolStripMenuItem.Name = "presentCustomCharsetToolStripMenuItem";
-            this.presentCustomCharsetToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.presentCustomCharsetToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.presentCustomCharsetToolStripMenuItem.Text = "Show Custom Charset...";
             this.presentCustomCharsetToolStripMenuItem.Click += new System.EventHandler(this.presentCustomCharsetToolStripMenuItem_Click);
             // 
             // setSketchesPathToolStripMenuItem
             // 
             this.setSketchesPathToolStripMenuItem.Name = "setSketchesPathToolStripMenuItem";
-            this.setSketchesPathToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.setSketchesPathToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.setSketchesPathToolStripMenuItem.Text = "Set Arduino Sketches Path...";
             this.setSketchesPathToolStripMenuItem.Visible = false;
             this.setSketchesPathToolStripMenuItem.Click += new System.EventHandler(this.setSketchesPathToolStripMenuItem_Click);
@@ -458,7 +476,7 @@ namespace OSD
             // getFwFromOSDToolStripMenuItem
             // 
             this.getFwFromOSDToolStripMenuItem.Name = "getFwFromOSDToolStripMenuItem";
-            this.getFwFromOSDToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.getFwFromOSDToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.getFwFromOSDToolStripMenuItem.Text = "GetFwFromOSD...";
             this.getFwFromOSDToolStripMenuItem.Visible = false;
             this.getFwFromOSDToolStripMenuItem.Click += new System.EventHandler(this.getFwFromOSDToolStripMenuItem_Click);
@@ -469,20 +487,20 @@ namespace OSD
             this.gettingStartedToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // gettingStartedToolStripMenuItem
             // 
             this.gettingStartedToolStripMenuItem.Name = "gettingStartedToolStripMenuItem";
-            this.gettingStartedToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.gettingStartedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.gettingStartedToolStripMenuItem.Text = "Getting started";
             this.gettingStartedToolStripMenuItem.Click += new System.EventHandler(this.gettingStartedToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "About ";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -800,7 +818,7 @@ namespace OSD
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.BATT_WARNnumeric);
             this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Controls.Add(this.MINVOLT_numeric);
+            this.groupBox4.Controls.Add(this.NUMCELL_numeric);
             this.groupBox4.Location = new System.Drawing.Point(357, 74);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(160, 150);
@@ -852,28 +870,32 @@ namespace OSD
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(7, 20);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(118, 13);
+            this.label7.Size = new System.Drawing.Size(61, 13);
             this.label7.TabIndex = 2;
-            this.label7.Text = "Min. Battery Voltage (V)";
+            this.label7.Text = "No. of Cells";
             // 
-            // MINVOLT_numeric
+            // NUMCELL_numeric
             // 
-            this.MINVOLT_numeric.DecimalPlaces = 1;
-            this.MINVOLT_numeric.Increment = new decimal(new int[] {
+            this.NUMCELL_numeric.Location = new System.Drawing.Point(9, 37);
+            this.NUMCELL_numeric.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.NUMCELL_numeric.Minimum = new decimal(new int[] {
             1,
             0,
             0,
-            65536});
-            this.MINVOLT_numeric.Location = new System.Drawing.Point(9, 37);
-            this.MINVOLT_numeric.Maximum = new decimal(new int[] {
-            255,
+            0});
+            this.NUMCELL_numeric.Name = "NUMCELL_numeric";
+            this.NUMCELL_numeric.Size = new System.Drawing.Size(91, 20);
+            this.NUMCELL_numeric.TabIndex = 0;
+            this.NUMCELL_numeric.Value = new decimal(new int[] {
+            1,
             0,
             0,
-            65536});
-            this.MINVOLT_numeric.Name = "MINVOLT_numeric";
-            this.MINVOLT_numeric.Size = new System.Drawing.Size(91, 20);
-            this.MINVOLT_numeric.TabIndex = 0;
-            this.MINVOLT_numeric.ValueChanged += new System.EventHandler(this.MINVOLT_numeric_ValueChanged);
+            0});
+            this.NUMCELL_numeric.ValueChanged += new System.EventHandler(this.NUMCELL_numeric_ValueChanged);
             // 
             // groupBox3
             // 
@@ -1072,6 +1094,19 @@ namespace OSD
             this.rbtSortAlphabetic.UseVisualStyleBackColor = true;
             this.rbtSortAlphabetic.CheckedChanged += new System.EventHandler(this.rbtSortAlphabetic_CheckedChanged);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBox1.Location = new System.Drawing.Point(178, 17);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(497, 339);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.LIST_items2);
@@ -1175,6 +1210,58 @@ namespace OSD
             this.NUM_X2.TabIndex = 0;
             this.NUM_X2.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox2.Location = new System.Drawing.Point(178, 17);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(497, 339);
+            this.pictureBox2.TabIndex = 3;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseDown);
+            this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseMove);
+            this.pictureBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseUp);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.cbxShowUpdateDialog);
+            this.tabPage3.Controls.Add(this.cbxAutoUpdate);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(679, 381);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "CT Tool";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // cbxShowUpdateDialog
+            // 
+            this.cbxShowUpdateDialog.AutoSize = true;
+            this.cbxShowUpdateDialog.Checked = true;
+            this.cbxShowUpdateDialog.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxShowUpdateDialog.Location = new System.Drawing.Point(7, 29);
+            this.cbxShowUpdateDialog.Name = "cbxShowUpdateDialog";
+            this.cbxShowUpdateDialog.Size = new System.Drawing.Size(157, 17);
+            this.cbxShowUpdateDialog.TabIndex = 1;
+            this.cbxShowUpdateDialog.Text = "Prompt for update at startup";
+            this.cbxShowUpdateDialog.UseVisualStyleBackColor = true;
+            this.cbxShowUpdateDialog.CheckedChanged += new System.EventHandler(this.cbxShowUpdateDialog_CheckedChanged);
+            // 
+            // cbxAutoUpdate
+            // 
+            this.cbxAutoUpdate.AutoSize = true;
+            this.cbxAutoUpdate.Checked = true;
+            this.cbxAutoUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxAutoUpdate.Location = new System.Drawing.Point(7, 6);
+            this.cbxAutoUpdate.Name = "cbxAutoUpdate";
+            this.cbxAutoUpdate.Size = new System.Drawing.Size(160, 17);
+            this.cbxAutoUpdate.TabIndex = 0;
+            this.cbxAutoUpdate.Text = "Check for updates at startup";
+            this.cbxAutoUpdate.UseVisualStyleBackColor = true;
+            this.cbxAutoUpdate.CheckedChanged += new System.EventHandler(this.cbxAutoUpdate_CheckedChanged);
+            // 
             // lblFWModelType
             // 
             this.lblFWModelType.Location = new System.Drawing.Point(6, 13);
@@ -1266,89 +1353,6 @@ namespace OSD
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "OSD Status:";
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.cbxShowUpdateDialog);
-            this.tabPage3.Controls.Add(this.cbxAutoUpdate);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(679, 381);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "CT Tool";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // cbxAutoUpdate
-            // 
-            this.cbxAutoUpdate.AutoSize = true;
-            this.cbxAutoUpdate.Checked = true;
-            this.cbxAutoUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxAutoUpdate.Location = new System.Drawing.Point(7, 6);
-            this.cbxAutoUpdate.Name = "cbxAutoUpdate";
-            this.cbxAutoUpdate.Size = new System.Drawing.Size(160, 17);
-            this.cbxAutoUpdate.TabIndex = 0;
-            this.cbxAutoUpdate.Text = "Check for updates at startup";
-            this.cbxAutoUpdate.UseVisualStyleBackColor = true;
-            this.cbxAutoUpdate.CheckedChanged += new System.EventHandler(this.cbxAutoUpdate_CheckedChanged);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.pictureBox1.Location = new System.Drawing.Point(178, 17);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(497, 339);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Location = new System.Drawing.Point(178, 17);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(497, 339);
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseDown);
-            this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseMove);
-            this.pictureBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseUp);
-            // 
-            // saveToFileToolStripMenuItem
-            // 
-            this.saveToFileToolStripMenuItem.Image = global::OSD.Properties.Resources.saveHS;
-            this.saveToFileToolStripMenuItem.Name = "saveToFileToolStripMenuItem";
-            this.saveToFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToFileToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.saveToFileToolStripMenuItem.Text = "Save OSD file...";
-            this.saveToFileToolStripMenuItem.Click += new System.EventHandler(this.saveToFileToolStripMenuItem_Click);
-            // 
-            // loadFromFileToolStripMenuItem
-            // 
-            this.loadFromFileToolStripMenuItem.Image = global::OSD.Properties.Resources.openHS;
-            this.loadFromFileToolStripMenuItem.Name = "loadFromFileToolStripMenuItem";
-            this.loadFromFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.loadFromFileToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.loadFromFileToolStripMenuItem.Text = "Open OSD File...";
-            this.loadFromFileToolStripMenuItem.Click += new System.EventHandler(this.loadFromFileToolStripMenuItem_Click);
-            // 
-            // cbxShowUpdateDialog
-            // 
-            this.cbxShowUpdateDialog.AutoSize = true;
-            this.cbxShowUpdateDialog.Checked = true;
-            this.cbxShowUpdateDialog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxShowUpdateDialog.Location = new System.Drawing.Point(7, 29);
-            this.cbxShowUpdateDialog.Name = "cbxShowUpdateDialog";
-            this.cbxShowUpdateDialog.Size = new System.Drawing.Size(157, 17);
-            this.cbxShowUpdateDialog.TabIndex = 1;
-            this.cbxShowUpdateDialog.Text = "Prompt for update at startup";
-            this.cbxShowUpdateDialog.UseVisualStyleBackColor = true;
-            this.cbxShowUpdateDialog.CheckedChanged += new System.EventHandler(this.cbxShowUpdateDialog_CheckedChanged);
-            // 
             // OSD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1398,7 +1402,7 @@ namespace OSD
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BATT_WARNnumeric)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MINVOLT_numeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUMCELL_numeric)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.STALL_numeric)).EndInit();
@@ -1409,19 +1413,19 @@ namespace OSD
             ((System.ComponentModel.ISupportInitialize)(this.RSSI_numeric_min)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_Y2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_X2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
             this.groupBox12.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1476,7 +1480,7 @@ namespace OSD
         private System.Windows.Forms.NumericUpDown RSSI_numeric_min;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown MINVOLT_numeric;
+        private System.Windows.Forms.NumericUpDown NUMCELL_numeric;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label STALL_label;
         private System.Windows.Forms.NumericUpDown STALL_numeric;

@@ -61,7 +61,7 @@ namespace OSD
 
         public uint8_t overspeed = 40;
         public uint8_t stall = 5;
-        public uint8_t battv = 101;                //Batery warning voltage - units Volt *10 
+        public uint8_t numcells = 1;                //Number of battery cells 
         public uint8_t converts = 0;                //1- Imperial; 0- Metric
 
         private byte temperatureChar = 0x1B;
